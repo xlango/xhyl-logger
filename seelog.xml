@@ -1,0 +1,9 @@
+<seelog type="asynctimer" asyncinterval="5000000" minlevel="info">
+    <outputs formatid="main">
+        <console />
+        <rollingfile formatid="main" type="size" filename="./log/main.log" maxsize="20971520" maxrolls="10" />
+    </outputs>
+    <formats>
+        <format id="main" format="%Date %Time,%File,[%Level],%Msg%n"/>
+    </formats>
+</seelog>

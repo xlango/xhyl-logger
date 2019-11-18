@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option objc_class_prefix = "XHYL";
+
+package model;
+
+//log level
+enum Level {
+   INFO=0;
+   DEBUG=1;
+   ERROR=2;
+   WARN=3;
+   FATAL=4;
+   OFF=5;
+   TRACE=6;
+   ALL=7;
+}
+
+// The log service definition.
+service Logger {
+  // Sends a greeting
+  rpc Info (RequestInfo) returns (ResposeResult) {}
+}
+
+// The request message containing the user's name.
+message LogInfo {
+  string content = 1;
+  string time = 2;
+}
+
+message RequestInfo {
+  string content = 1;
+  string nodeName = 2;
+}
+
+message ResposeResult {
+  int32  status = 1;
+}

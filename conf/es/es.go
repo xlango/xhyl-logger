@@ -12,11 +12,6 @@ import (
 	"time"
 )
 
-//初始化
-func init() {
-
-}
-
 func NewEsClient(addr string) (*elastic.Client, error) {
 	client, err := elastic.NewClient(
 		elastic.SetURL(addr),
@@ -28,7 +23,7 @@ func NewEsClient(addr string) (*elastic.Client, error) {
 	return client, nil
 }
 
-func InsertLog(index string, typeName string, logInfo string) error {
+func InsertLog(index string, typeName string, logInfo string, level model.Level) error {
 	client, err := NewEsClient(conf.GlobalConfig.EsHost)
 	if err != nil {
 		logs.Error("error : es client : ", err.Error())
@@ -37,6 +32,7 @@ func InsertLog(index string, typeName string, logInfo string) error {
 
 	id := time.Now().Format(fmt.Sprintf("%v%d", "20060102150405", rand.Intn(9999)))
 	log, err := json.Marshal(model.LogInfo{
+		Level:   level.String(),
 		Time:    time.Now().Format("2006-01-02 15:04:05"),
 		Content: logInfo,
 	})

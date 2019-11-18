@@ -17,7 +17,11 @@ import (
 type LogServer struct{}
 
 func (s *LogServer) Info(c context2.Context, req *model.RequestInfo) (*model.ResposeResult, error) {
-	err := es.InsertLog(req.NodeName, "node", req.Content)
+	if req.NodeName == "" {
+		req.NodeName = "unknown"
+	}
+
+	err := es.InsertLog(req.NodeName, "log", req.Content, req.Level)
 	if err != nil {
 		return nil, err
 	}

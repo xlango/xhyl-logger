@@ -18,7 +18,6 @@ enum Level {
 
 // The log service definition.
 service Logger {
-  // Sends a greeting
   rpc Info (RequestInfo) returns (ResposeResult) {}
 }
 
@@ -26,11 +25,13 @@ service Logger {
 message LogInfo {
   string content = 1;
   string time = 2;
+  string level = 3;
 }
 
 message RequestInfo {
   string content = 1;
   string nodeName = 2;
+  Level level = 3;
 }
 
 message ResposeResult {

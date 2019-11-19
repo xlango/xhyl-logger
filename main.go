@@ -10,5 +10,4 @@ func main() {
 	conf.InitConfig()
 	go consul.RegisterServer()
 	proto.GrpcRegisterLogServer()
-
 }

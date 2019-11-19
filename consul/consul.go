@@ -2,8 +2,8 @@ package consul
 
 import (
 	"fmt"
+	"github.com/astaxie/beego/logs"
 	"github.com/hashicorp/consul/api"
-	"log"
 	"logconnection/conf"
 	"net/http"
 )
@@ -20,7 +20,8 @@ func RegisterServer() {
 	}
 	client, err := NewConsulClient(conf.GlobalConfig.ConsulAddress)
 	if err != nil {
-		log.Fatal("consul client error : ", err)
+		logs.Error("consul client error : ", err)
+		return
 	}
 
 	registration := new(api.AgentServiceRegistration)
@@ -45,7 +46,8 @@ func RegisterServer() {
 
 	err = client.Agent().ServiceRegister(registration)
 	if err != nil {
-		log.Fatal("register server error : ", err)
+		logs.Error("register server error : ", err)
+		return
 	}
 
 	http.HandleFunc("/check", ConsulCheck)
@@ -56,8 +58,8 @@ var count int64
 
 // consul 服务端会自己发送请求，来进行健康检查
 func ConsulCheck(w http.ResponseWriter, r *http.Request) {
-
 	s := "consulCheck" + fmt.Sprint(count) + "remote:" + r.RemoteAddr + " " + r.URL.String()
+	logs.Info(s)
 	fmt.Println(s)
 	fmt.Fprintln(w, s)
 	count++

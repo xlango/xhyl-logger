@@ -6,7 +6,7 @@
   "ConsulRegisterName": "logserver",
   "ConsulRegisterPort": 5022,
   "ConsulRegisterTags": "v0001",
-  "ConsulRegisterAddress": "192.168.10.190",
+  "ConsulRegisterAddress": "192.168.10.102",
   "ConsulCheckPort": 5022,
   "ConsulCheckTimeout": "3s",
   "ConsulCheckInterval": "5s",

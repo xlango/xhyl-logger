@@ -8,6 +8,7 @@ import (
 
 func main() {
 	conf.InitConfig()
-	go proto.GrpcRegisterLogServer()
-	consul.RegisterServer()
+	go consul.RegisterServer()
+	proto.GrpcRegisterLogServer()
+
 }

@@ -8,36 +8,38 @@ import (
 )
 
 var (
-	Address string
+	Address  string
+	NodeName string
 )
 
 func init() {
 	Address = "127.0.0.1:5021"
+	NodeName = "unknown"
 }
 
-func Info(nodeName, content string) {
-	sendLog(pb.Level_INFO, content, nodeName)
+func Info(content string) {
+	sendLog(pb.Level_INFO, content, NodeName)
 }
-func Debug(nodeName, content string) {
-	sendLog(pb.Level_DEBUG, content, nodeName)
+func Debug(content string) {
+	sendLog(pb.Level_DEBUG, content, NodeName)
 }
-func Error(nodeName, content string) {
-	sendLog(pb.Level_ERROR, content, nodeName)
+func Error(content string) {
+	sendLog(pb.Level_ERROR, content, NodeName)
 }
-func Warn(nodeName, content string) {
-	sendLog(pb.Level_WARN, content, nodeName)
+func Warn(content string) {
+	sendLog(pb.Level_WARN, content, NodeName)
 }
-func Fatal(nodeName, content string) {
-	sendLog(pb.Level_FATAL, content, nodeName)
+func Fatal(content string) {
+	sendLog(pb.Level_FATAL, content, NodeName)
 }
-func Off(nodeName, content string) {
-	sendLog(pb.Level_OFF, content, nodeName)
+func Off(content string) {
+	sendLog(pb.Level_OFF, content, NodeName)
 }
-func Trace(nodeName, content string) {
-	sendLog(pb.Level_TRACE, content, nodeName)
+func Trace(content string) {
+	sendLog(pb.Level_TRACE, content, NodeName)
 }
-func All(nodeName, content string) {
-	sendLog(pb.Level_ALL, content, nodeName)
+func All(content string) {
+	sendLog(pb.Level_ALL, content, NodeName)
 }
 
 func sendLog(level pb.Level, content, nodeName string) {

@@ -1,9 +1,9 @@
 package logc
 
 import (
+	"fmt"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"log"
 	pb "logconnection/proto/model"
 )
 
@@ -18,35 +18,35 @@ func init() {
 }
 
 func Info(content string) {
-	sendLog(pb.Level_INFO, content, NodeName)
+	go sendLog(pb.Level_INFO, content, NodeName)
 }
 func Debug(content string) {
-	sendLog(pb.Level_DEBUG, content, NodeName)
+	go sendLog(pb.Level_DEBUG, content, NodeName)
 }
 func Error(content string) {
-	sendLog(pb.Level_ERROR, content, NodeName)
+	go sendLog(pb.Level_ERROR, content, NodeName)
 }
 func Warn(content string) {
-	sendLog(pb.Level_WARN, content, NodeName)
+	go sendLog(pb.Level_WARN, content, NodeName)
 }
 func Fatal(content string) {
-	sendLog(pb.Level_FATAL, content, NodeName)
+	go sendLog(pb.Level_FATAL, content, NodeName)
 }
 func Off(content string) {
-	sendLog(pb.Level_OFF, content, NodeName)
+	go sendLog(pb.Level_OFF, content, NodeName)
 }
 func Trace(content string) {
-	sendLog(pb.Level_TRACE, content, NodeName)
+	go sendLog(pb.Level_TRACE, content, NodeName)
 }
 func All(content string) {
-	sendLog(pb.Level_ALL, content, NodeName)
+	go sendLog(pb.Level_ALL, content, NodeName)
 }
 
 func sendLog(level pb.Level, content, nodeName string) {
 	conn, err := grpc.Dial(Address, grpc.WithInsecure())
 
 	if err != nil {
-		log.Fatalf("log grpc did not connect: %v", err)
+		fmt.Println("log grpc did not connect: ", err)
 	}
 
 	defer conn.Close()
@@ -56,7 +56,7 @@ func sendLog(level pb.Level, content, nodeName string) {
 	_, err = c.Info(context.Background(), &pb.RequestInfo{Level: level, Content: content, NodeName: nodeName})
 
 	if err != nil {
-		log.Fatalf("log grpc could not greet: %v", err)
+		fmt.Println("log grpc could not greet: ", err)
 	}
 
 }

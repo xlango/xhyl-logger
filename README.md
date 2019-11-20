@@ -20,6 +20,7 @@ XHYL技术栈：golang 1.13、elasticsearch7.4.2、 kibana7.4.2、docker部署�
     重启es容器：docker restart elasticsearch
 
 3.docker安装kibana（docker镜像仓库：https://hub.docker.com/_/kibana）
+
     拉去镜像：docker pull kibana:7.4.2
     运行容器：docker run --name kibana -e ELASTICSEARCH_HOSTS=http://192.168.10.20:9200  -p 5601:5601 -d kibana:7.4.2
 
@@ -74,6 +75,7 @@ XHYL技术栈：golang 1.13、elasticsearch7.4.2、 kibana7.4.2、docker部署�
     ---
 
 4.docker部署
+
     （1）cd到config.json、Dockerfile、seelog.xml、main所在目录
     （2）制作docker镜像：
                        docker build -t logconnection:v1 .

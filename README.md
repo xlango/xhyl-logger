@@ -91,16 +91,16 @@ XHYL技术栈：golang 1.13、elasticsearch7.4.2、 kibana7.4.2、docker部署�
 <h4>客户端使用:</h4>
 
      import (
-     	"logconnection/proto/client"
+     	"logconnection/proto/client" 
      	"time"
      )
 
      func main() {
-     		logc.Address="192.168.10.33:5021"
-     		logc.NodeName="logcclient"
-
-     		//测试使用
-     		logc.Error("Error 555555")
-
-     		time.Sleep(time.Second)
+            logc.SetLogcAddress("192.168.10.33:5021")
+            logc.SetLogcNodeName("logcclient")
+            
+            //测试使用
+            ogc.Error("Error 6666666666")
+            
+            ime.Sleep(time.Second)
      }

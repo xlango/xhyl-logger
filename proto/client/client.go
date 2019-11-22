@@ -8,42 +8,42 @@ import (
 )
 
 var (
-	Address  string
-	NodeName string
+	address  string
+	nodeName string
 )
 
 func init() {
-	Address = "127.0.0.1:5021"
-	NodeName = "unknown"
+	address = "127.0.0.1:5021"
+	nodeName = "unknown"
 }
 
 func Info(content string) {
-	go sendLog(pb.Level_INFO, content, NodeName)
+	go sendLog(pb.Level_INFO, content, nodeName)
 }
 func Debug(content string) {
-	go sendLog(pb.Level_DEBUG, content, NodeName)
+	go sendLog(pb.Level_DEBUG, content, nodeName)
 }
 func Error(content string) {
-	go sendLog(pb.Level_ERROR, content, NodeName)
+	go sendLog(pb.Level_ERROR, content, nodeName)
 }
 func Warn(content string) {
-	go sendLog(pb.Level_WARN, content, NodeName)
+	go sendLog(pb.Level_WARN, content, nodeName)
 }
 func Fatal(content string) {
-	go sendLog(pb.Level_FATAL, content, NodeName)
+	go sendLog(pb.Level_FATAL, content, nodeName)
 }
 func Off(content string) {
-	go sendLog(pb.Level_OFF, content, NodeName)
+	go sendLog(pb.Level_OFF, content, nodeName)
 }
 func Trace(content string) {
-	go sendLog(pb.Level_TRACE, content, NodeName)
+	go sendLog(pb.Level_TRACE, content, nodeName)
 }
 func All(content string) {
-	go sendLog(pb.Level_ALL, content, NodeName)
+	go sendLog(pb.Level_ALL, content, nodeName)
 }
 
 func sendLog(level pb.Level, content, nodeName string) {
-	conn, err := grpc.Dial(Address, grpc.WithInsecure())
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 
 	if err != nil {
 		fmt.Println("log grpc did not connect: ", err)
@@ -59,4 +59,12 @@ func sendLog(level pb.Level, content, nodeName string) {
 		fmt.Println("log grpc could not greet: ", err)
 	}
 
+}
+
+func SetLogcAddress(addr string) {
+	address = addr
+}
+
+func SetLogcNodeName(node string) {
+	nodeName = node
 }

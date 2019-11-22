@@ -100,7 +100,7 @@ XHYL技术栈：golang 1.13、elasticsearch7.4.2、 kibana7.4.2、docker部署�
             logc.SetLogcNodeName("logcclient")
             
             //测试使用
-            ogc.Error("Error 6666666666")
+            logc.Error("Error 6666666666")
             
-            ime.Sleep(time.Second)
+            time.Sleep(time.Second)
      }
